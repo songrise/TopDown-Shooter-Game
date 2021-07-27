@@ -19,14 +19,10 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        //set gravity to avoid it from falling down too fast
+        // rb.gravity = 0.1f;
         StartCoroutine(DestroyAfter(maxLifetime));
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     void OnCollisionEnter(Collision collision)
     {

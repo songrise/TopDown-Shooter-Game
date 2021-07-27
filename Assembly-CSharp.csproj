@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6385e79c-64bf-0de6-1e78-f0c8539963a0}</ProjectGuid>
+    <ProjectGuid>{67f29f5b-5f00-bfa3-219e-feae2d8c894f}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -320,7 +320,7 @@
         <HintPath>C:/Program Files/Unity/2020.3.12f1c1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>C:/Program Files/Unity/2020.3.12f1c1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -668,40 +668,40 @@
         <HintPath>C:/Program Files/Unity/2020.3.12f1c1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Editor">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/Unity.PlasticSCM.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+        <HintPath>C:/Users/11385/Documents/GitHub/TopDown-Shooter-Game/Project/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
