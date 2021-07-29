@@ -13,13 +13,16 @@ public class GunController : MonoBehaviour
     public float bulletSpeed = 70f;
     public GameObject firingFlame;
 
+    public float recoilIntensity = 0.1f;
+    private AudioSource audioSource;
+
 
     // 上一次开火的时间
     protected float lastFireTime;
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
         //disable the flame
         firingFlame.SetActive(false);
     }
@@ -33,15 +36,17 @@ public class GunController : MonoBehaviour
     {
         if (isAllowShooting() && Input.GetButton("Fire1"))
         {
-
+            audioSource.Play();
             firingFlame.SetActive(true);
             lastFireTime = Time.time;
             Vector3 firePos = transform.forward;
             //normalize the mouse position
             // mousePos.Normalize();
-            Debug.Log("Firing at direction: " + firePos);
+            //add random direction
+            firePos.x += Random.insideUnitSphere.x * recoilIntensity;
+            firePos.z += Random.insideUnitSphere.z * recoilIntensity;
 
-            Rigidbody b = Instantiate(bullet, transform.position + transform.forward * 2, Quaternion.identity);
+            Rigidbody b = Instantiate(bullet, transform.position + transform.forward * 2f, Quaternion.identity);
             b.velocity = firePos * bulletSpeed;
             Debug.Log("Firing");
         }

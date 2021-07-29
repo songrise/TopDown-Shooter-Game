@@ -11,13 +11,14 @@ public class PlayerController : MonoBehaviour
     float maxSpeed = 10f;
     float curSpeed;
 
-    float sprintSpeed;
+    float sprintSpeed = 20f;
+    // private bool isMoving;
+    private bool isDashing = false;
 
 
     private Rigidbody playerRb;
 
-    private Vector3 cameraOffSet = new Vector3(0, 20, 20);
-    private Vector3 cameraOrientation = new Vector3(45, 180, 0);
+
 
 
 
@@ -29,26 +30,40 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
-        //camera follow the player
-        Camera.main.transform.position = transform.position + cameraOffSet;
-        Camera.main.transform.rotation = Quaternion.Euler(cameraOrientation);
     }
 
     void FixedUpdate()
     {
+
+        Vector3 targetPoint = getTargetPos();
+        OnDash();
+        OnMove();
+
+
+        lookAtCursor(targetPoint);
+    }
+
+    private void OnMove()
+    {
         curSpeed = walkSpeed;
         maxSpeed = curSpeed;
-
-        // the movement magic
-        //player movement
+        //todo use transform implement movement
 
 
-        playerRb.velocity = new Vector3(
-            Mathf.Lerp(0, -Input.GetAxis("Horizontal") * curSpeed, 0.8f),
-                playerRb.velocity.y,
-                Mathf.Lerp(0, -Input.GetAxis("Vertical") * curSpeed, 0.8f)
-            );
+        // playerRb.velocity = new Vector3(
+        //     Mathf.Lerp(0, -Input.GetAxis("Horizontal") * curSpeed, 0.8f),
+        //         0,
+        //         Mathf.Lerp(0, -Input.GetAxis("Vertical") * curSpeed, 0.8f)
+        //     );
+        if (!isDashing)
+        {
+            transform.position = transform.position - new Vector3(
+            Mathf.Lerp(0, Input.GetAxis("Horizontal"), 0.2f),
+           0,
+           Mathf.Lerp(0, Input.GetAxis("Vertical"), 0.2f)
+       );
+
+        }
 
         // // optional: clamp position inside a rectangle
         // rb.position = new Vector3(
@@ -57,12 +72,11 @@ public class PlayerController : MonoBehaviour
         //     Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax)
         // );
 
-        lookAtCursor();
+
     }
 
-    protected void lookAtCursor()
+    private Vector3 getTargetPos()
     {
-        float rotateSpeed = 10f;
         // Generate a plane that intersects the transform's position with an upwards normal.
         Plane playerPlane = new Plane(Vector3.up, transform.position);
 
@@ -80,13 +94,25 @@ public class PlayerController : MonoBehaviour
         {
             // Get the point along the ray that hits the calculated distance.
             Vector3 targetPoint = ray.GetPoint(hitdist);
-
-            // Determine the target rotation.  This is the rotation if the transform looks at the target point.
-            Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
-
-            // Smoothly rotate towards the target point.
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+            return targetPoint;
         }
+        else
+        {
+            return Vector3.zero;
+        }
+    }
+
+    protected void lookAtCursor(Vector3 targetPoint)
+    {
+        float rotateSpeed = 15f;
+        // Generate a plane that intersects the transform's position with an upwards normal.
+
+        // Determine the target rotation.  This is the rotation if the transform looks at the target point.
+        Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
+
+        // Smoothly rotate towards the target point.
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+
     }
 
 
@@ -107,6 +133,108 @@ public class PlayerController : MonoBehaviour
     //         yield return new WaitForSeconds(fireRate);
     //     }
     // }
+    //todo reformat
+    float dashDuration = 0.2f;// 控制冲
+    float dashSpeed = 500;// 冲刺速度
+    //todo 穿墙
+    float dashTime;// 剩余冲刺时间
+    Vector3 directionXOZ = Vector3.zero;
+    private void OnDash()
+    {
+        if (!isDashing)
+        {
+            //if pressed space bar
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                isDashing = true;
+                //get the direction from wasd
+                directionXOZ = new Vector3(
+                    -Mathf.Lerp(0, Input.GetAxis("Horizontal"), 1f),
+                    0,
+                    -Mathf.Lerp(0, Input.GetAxis("Vertical"), 1f)
+                    );
+                // if no direction, by default, set the direction to forward
+                if (directionXOZ == Vector3.zero)
+                {
+                    directionXOZ = transform.forward;
+                }
+                StartCoroutine(SlowDownInDash(dashDuration));
+                Debug.Log("Dashing");
+                directionXOZ.y = 0f;
+            }
+        }
+        else
+        {//else dashing
+            if (dashTime <= 0)
+            {
+                //end of a dash state
+                revertGameSpeed();
+                isDashing = false;
 
+                dashTime = dashDuration;
+                //set velocity to zero
+                playerRb.velocity = Vector3.zero;
+            }
+            else
+            {
+                dashTime -= Time.deltaTime;
+                //if started dash for serveral time, slowdown game
+
+                playerRb.velocity = directionXOZ * dashTime * dashSpeed;// rigidbody = GetComponent<Rigidbody>(); 加在 Start() 函数中
+            }
+        }
+        //remove y axis
+        // Vector3 cursorPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        // //convert location to xzy, scale z direction by sqrt(2) because 45 degree
+        // cursorPos.z = cursorPos.y * 1.414f;
+        // cursorPos.y = 0;
+        // //convert to local position
+
+
+        // Time.timeScale = 0.3f;
+        // //dash toward the mouse
+        // playerRb.velocity = Vector3.forward * 10f;
+    }
+    // public GameObject pp;
+    IEnumerator SlowDownInDash(float dashDuration)
+    {
+        //find post processing volume
+        // pp.GetComponent<PostProcessingVolume>().volume = 0.5f;
+        for (int i = 1; i < 8; i += 3)
+        {
+            //set chromatic Aberation
+            // pp.GetComponent<PostProcessingVolume>().SetChromaticAberration(0.3f);
+            //set fov
+            Camera.main.fieldOfView = 70f;
+            //slow down the game in different phase
+            slowDownGame(i);
+            yield return new WaitForSeconds(dashDuration / 3f);
+        }
+    }
+
+
+    //todo refactor
+    private float fixedDeltaTime;
+
+
+    void Awake()
+    {
+        this.fixedDeltaTime = Time.fixedDeltaTime;
+    }
+    public void slowDownGame(float scale)
+    {
+        float t = 1.0f / scale;
+        Debug.Log("slow down game by " + t);
+        Time.timeScale = t;
+        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+    }
+
+    public void revertGameSpeed()
+    {
+        Debug.Log("revert game speed");
+        Camera.main.fieldOfView = 65f;
+        Time.timeScale = 1.0f;
+        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
+    }
 
 }

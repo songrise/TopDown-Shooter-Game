@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
     public Vector3 startPosition;
     public Vector3 direction;
 
-    private int maxLifetime = 3;
+    private int maxLifetime = 1;
 
 
 
@@ -21,16 +21,17 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         //set gravity to avoid it from falling down too fast
         // rb.gravity = 0.1f;
-        StartCoroutine(DestroyAfter(maxLifetime));
+        StartCoroutine(AutoRecycle());
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        // if (collision.gameObject.tag == "Player")
-        //     return;
+        if (collision.gameObject.tag == "Player")
+            return;
         if (collision.gameObject.tag == "Enemy")
         {
             //deal  damage
+            collision.gameObject.GetComponent<SimpleEnemy>().OnHit();
         }
         Debug.Log("Bullet hit " + collision.gameObject.name);
         Instantiate(explosion, transform.position, transform.rotation);
@@ -38,14 +39,11 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    IEnumerator DestroyAfter(float seconds)
+
+    IEnumerator AutoRecycle()
     {
-        for (int i = 0; i < this.maxLifetime; i++)
-        {
-            yield return new WaitForSeconds(1);
-        }
-        // if already destroyed
+        yield return new WaitForSeconds(1.5f);
         if (gameObject != null)
-            Destroy(gameObject);
+            ObjectPool.GetInstance().RecycleObj(gameObject);
     }
 }
