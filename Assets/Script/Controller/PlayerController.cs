@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     float sprintSpeed = 20f;
     // private bool isMoving;
     private bool isDashing = false;
+    private float angularSpeed = 15f;
 
 
     private Rigidbody playerRb;
@@ -104,14 +105,14 @@ public class PlayerController : MonoBehaviour
 
     protected void lookAtCursor(Vector3 targetPoint)
     {
-        float rotateSpeed = 15f;
+
         // Generate a plane that intersects the transform's position with an upwards normal.
 
         // Determine the target rotation.  This is the rotation if the transform looks at the target point.
         Quaternion targetRotation = Quaternion.LookRotation(targetPoint - transform.position);
 
         // Smoothly rotate towards the target point.
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, angularSpeed * Time.deltaTime);
 
     }
 
@@ -137,7 +138,7 @@ public class PlayerController : MonoBehaviour
     float dashDuration = 0.2f;// 控制冲
     float dashSpeed = 500;// 冲刺速度
     //todo 穿墙
-    float dashTime;// 剩余冲刺时间
+    float dashTime = 0.2f;// 剩余冲刺时间
     Vector3 directionXOZ = Vector3.zero;
     private void OnDash()
     {
@@ -147,6 +148,8 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isDashing = true;
+                //set angular speed higher for better expereince
+                angularSpeed = 60f;
                 //get the direction from wasd
                 directionXOZ = new Vector3(
                     -Mathf.Lerp(0, Input.GetAxis("Horizontal"), 1f),
@@ -167,8 +170,9 @@ public class PlayerController : MonoBehaviour
         {//else dashing
             if (dashTime <= 0)
             {
+                angularSpeed = 15f;
                 //end of a dash state
-                revertGameSpeed();
+                TimeControl.GetInstance().revertGameSpeed();
                 isDashing = false;
 
                 dashTime = dashDuration;
@@ -207,34 +211,17 @@ public class PlayerController : MonoBehaviour
             //set fov
             Camera.main.fieldOfView = 70f;
             //slow down the game in different phase
-            slowDownGame(i);
+            TimeControl.GetInstance().slowDownGame(i);
             yield return new WaitForSeconds(dashDuration / 3f);
         }
     }
 
 
     //todo refactor
-    private float fixedDeltaTime;
+    // void Awake()
+    // {
+    //     Debug.Log(Time.fixedDeltaTime);
+    // }
 
-
-    void Awake()
-    {
-        this.fixedDeltaTime = Time.fixedDeltaTime;
-    }
-    public void slowDownGame(float scale)
-    {
-        float t = 1.0f / scale;
-        Debug.Log("slow down game by " + t);
-        Time.timeScale = t;
-        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
-    }
-
-    public void revertGameSpeed()
-    {
-        Debug.Log("revert game speed");
-        Camera.main.fieldOfView = 65f;
-        Time.timeScale = 1.0f;
-        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
-    }
 
 }
