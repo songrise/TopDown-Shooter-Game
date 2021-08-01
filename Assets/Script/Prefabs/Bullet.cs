@@ -27,11 +27,18 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
-            return;
+        {
+            Destroy(collision.gameObject);//todo for testing
+        }
         if (collision.gameObject.tag == "Enemy")
         {
             //deal  damage
-            collision.gameObject.GetComponent<SimpleEnemy>().OnHit();
+            collision.gameObject.GetComponent<BasicEnemy>().OnHit();
+
+        }
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Destroy(collision.gameObject);// temp setting
         }
         Debug.Log("Bullet hit " + collision.gameObject.name);
         Instantiate(explosion, transform.position, transform.rotation);

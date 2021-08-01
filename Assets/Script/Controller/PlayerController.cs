@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRb;
 
+    private GameObject weapon;
+
 
 
 
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = GetComponent<Rigidbody>();
         // sprintSpeed = walkSpeed + (walkSpeed / 2);
+        weapon = GameObject.Find("Gun");
     }
 
     void Update()
@@ -39,7 +42,7 @@ public class PlayerController : MonoBehaviour
         Vector3 targetPoint = getTargetPos();
         OnDash();
         OnMove();
-
+        OnAttack();
 
         lookAtCursor(targetPoint);
     }
@@ -204,15 +207,24 @@ public class PlayerController : MonoBehaviour
     {
         //find post processing volume
         // pp.GetComponent<PostProcessingVolume>().volume = 0.5f;
-        for (int i = 1; i < 8; i += 3)
+        Camera.main.fieldOfView = 70f;
+        for (int i = 1; i < 10; i += 4)
         {
             //set chromatic Aberation
             // pp.GetComponent<PostProcessingVolume>().SetChromaticAberration(0.3f);
             //set fov
-            Camera.main.fieldOfView = 70f;
             //slow down the game in different phase
             TimeControl.GetInstance().slowDownGame(i);
             yield return new WaitForSeconds(dashDuration / 3f);
+        }
+    }
+
+    private void OnAttack()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            // Debug.Log("Firing");
+            weapon.GetComponent<GunController>().OnFire();
         }
     }
 

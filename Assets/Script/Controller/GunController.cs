@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunController : MonoBehaviour
+public class GunController : MonoBehaviour, IWeapon
 {
 
     public Rigidbody bullet;
 
 
-    // 射速速率 一秒钟能打几发
     public float fireRate = 5;
     public float bulletSpeed = 70f;
     public GameObject firingFlame;
@@ -17,7 +16,8 @@ public class GunController : MonoBehaviour
     private AudioSource audioSource;
 
 
-    // 上一次开火的时间
+    // 上一次开火的时间 
+    //todo set to different users
     protected float lastFireTime;
     // Start is called before the first frame update
     void Start()
@@ -28,13 +28,11 @@ public class GunController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+
+    // call this function to fire
+    public void OnFire()
     {
-        OnFire();
-    }
-    private void OnFire()
-    {
-        if (isAllowShooting() && Input.GetButton("Fire1"))
+        if (isAllowShooting())
         {
             audioSource.Play();
             firingFlame.SetActive(true);
@@ -52,11 +50,8 @@ public class GunController : MonoBehaviour
         }
         else
         {
-            if (!Input.GetButton("Fire1"))
-            {
-                //disable the flame
-                firingFlame.SetActive(false);
-            }
+            //disable the flame
+            firingFlame.SetActive(false);
         }
     }
     protected bool isAllowShooting()

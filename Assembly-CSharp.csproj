@@ -36,13 +36,16 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
      <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\DebrisScript.cs" />
      <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\WFX_Demo_DeleteAfterDelay.cs" />
+     <Compile Include="Assets\Script\Enemy\IEnemy.cs" />
      <Compile Include="Assets\Script\Tools\ObjPool.cs" />
      <Compile Include="Assets\AmplifyOcclusion\Plugins\Runtime\VersionInfo.cs" />
      <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\CFX_Demo_RotateCamera.cs" />
      <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\WFX_Demo_RandomDir.cs" />
      <Compile Include="Assets\JMO Assets\WarFX\Scripts\CFX_LightIntensityFade.cs" />
+     <Compile Include="Assets\Thirdparty\KinoGlitch-master\KinoGlitch-master\Assets\Kino\Glitch\DigitalGlitch.cs" />
      <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Casings_&amp;_Projectiles\GrenadeScript.cs" />
      <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\ExplosiveBarrelScript.cs" />
      <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Demo_Scene_Components\Scripts\TargetScript.cs" />
@@ -52,11 +55,14 @@
      <Compile Include="Assets\Script\Enemy\Navigation.cs" />
      <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Casings_&amp;_Projectiles\CasingScript.cs" />
      <Compile Include="Assets\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
+     <Compile Include="Assets\Script\Enemy\BasicEnemy.cs" />
      <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Explosions_&amp;_Impacts\ExplosionScript.cs" />
      <Compile Include="Assets\AmplifyOcclusion\Samples\Blacksmith\Scripts\Controls.cs" />
      <Compile Include="Assets\Script\Enemy\SimpleEnemy.cs" />
      <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\CFX_AutoStopLoopedEffect.cs" />
      <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Explosions_&amp;_Impacts\ImpactScript.cs" />
+     <Compile Include="Assets\Script\Tools\EffectControll.cs" />
+     <Compile Include="Assets\Thirdparty\KinoGlitch-master\KinoGlitch-master\Assets\Reaktion\Utility\ConstantMotion.cs" />
      <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Weapon_Scripts\AutomaticGunScriptLPFP.cs" />
      <Compile Include="Assets\AmplifyOcclusion\Plugins\AmplifyOcclusionCommon.cs" />
      <Compile Include="Assets\Script\Prefabs\Bullet.cs" />
@@ -74,17 +80,15 @@
      <Compile Include="Assets\Script\FSM\IState.cs" />
      <Compile Include="Assets\Low Poly FPS Pack - Free (Sample)\Components\Scripts\Weapon_Scripts\HandgunScriptLPFP.cs" />
      <Compile Include="Assets\JMO Assets\WarFX\Scripts\CFX_AutoDestructShuriken.cs" />
+     <Compile Include="Assets\Script\Controller\IWeapon.cs" />
      <Compile Include="Assets\Script\Controller\GunController.cs" />
      <Compile Include="Assets\Script\Controller\CameraController.cs" />
-     <Compile Include="Assets\Script\Tools\TimeControl.cs" />
-     <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\WFX_Demo_New.cs" />
-     <Compile Include="Assets\AmplifyOcclusion\Plugins\AmplifyOcclusionEffect.cs" />
      <Compile Include="Assets\Thirdparty\KinoGlitch-master\KinoGlitch-master\Assets\Kino\Glitch\AnalogGlitch.cs" />
-     <Compile Include="Assets\Thirdparty\KinoGlitch-master\KinoGlitch-master\Assets\Kino\Glitch\DigitalGlitch.cs" />
-     <Compile Include="Assets\Thirdparty\KinoGlitch-master\KinoGlitch-master\Assets\Reaktion\Utility\ConstantMotion.cs" />
+     <Compile Include="Assets\Script\Tools\TimeControl.cs" />
+     <Compile Include="Assets\Script\Controller\DGunController.cs" />
+     <Compile Include="Assets\JMO Assets\WarFX\Demo\Assets\WFX_Demo_New.cs" />
      <Compile Include="Assets\Thirdparty\KinoGlitch-master\KinoGlitch-master\Assets\Reaktion\Utility\JitterMotion.cs" />
-     <Compile Include="Assets\Script\Tools\EffectControll.cs" />
-     <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
+     <Compile Include="Assets\AmplifyOcclusion\Plugins\AmplifyOcclusionEffect.cs" />
      <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S Multiply Soft.shader" />
      <None Include="Assets\Thirdparty\KinoGlitch-master\KinoGlitch-master\ProjectSettings\ProjectVersion.txt" />
      <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S Multiply Soft Scroll.shader" />
@@ -101,6 +105,7 @@
      <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S Particle Add A8.shader" />
      <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S Smoke Scroll.shader" />
      <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S Particle Multiply A8.shader" />
+     <None Include="Assets\Real Stars Skybox\Demo Scene\Documentation.txt" />
      <None Include="Assets\AmplifyOcclusion\Readme.txt" />
      <None Include="Assets\Shader\SeeThroughWall.shader" />
      <None Include="Assets\JMO Assets\WarFX\Shaders\WFX_S AlphaBlend Scroll.shader" />

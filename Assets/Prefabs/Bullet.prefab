@@ -9430,7 +9430,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
@@ -9493,7 +9493,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 3
@@ -9523,9 +9523,9 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.35632125, b: 0.24313724, a: 1}
+      key0: {r: 1, g: 0.14901961, b: 0.25048518, a: 1}
       key1: {r: 1, g: 0.2867409, b: 0.24313724, a: 0.29411766}
-      key2: {r: 1, g: 0.7921569, b: 0.24313726, a: 0.29411766}
+      key2: {r: 1, g: 0.48454538, b: 0.24313724, a: 0.29411766}
       key3: {r: 1, g: 0.7921569, b: 0.24313726, a: 0.29411766}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -9570,8 +9570,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.61345, y: 1, z: 0.99999976}
-  m_Center: {x: -4.806724, y: 0, z: 0}
+  m_Size: {x: 10.3302, y: 1, z: 0.99999976}
+  m_Center: {x: 4.484825, y: 0, z: 0}
 --- !u!1 &4341207087877589612
 GameObject:
   m_ObjectHideFlags: 0
